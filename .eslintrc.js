@@ -12,6 +12,7 @@ module.exports = {
 		"prefer-const": 1,
 		"no-var": 1,
 		"no-console": 0,
+		"no-unused-vars": 0,
 		"indent": [
 			"error",
 			"tab"
