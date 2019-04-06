@@ -1,0 +1,24 @@
+{
+  "name": "hardbox-proxy",
+  "version": "0.0.1",
+  "description": "Proxy Module for hardbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "hardbox",
+    "proxy"
+  ],
+  "author": "Tomasz Rakowski",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "mocha": "^6.0.2",
+    "request": "^2.88.0"
+  },
+  "dependencies": {
+    "http-proxy": "^1.17.0"
+  }
+}
