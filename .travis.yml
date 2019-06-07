@@ -6,3 +6,7 @@ node_js:
   - "10"
   - "9"
   - "8"
+env:
+  - CODECOV_TOKEN="b3724e01-e035-481a-9641-4e6b8415ace8"
+after_success:
+  - yarn coveralls
