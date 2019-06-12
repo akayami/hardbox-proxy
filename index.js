@@ -4,7 +4,9 @@ module.exports = (config) => {
 	const proxy = httpProxy.createProxyServer({
 		xfwd: true
 	});
-
+	
+	console.debug('Setting up forwarding to', config.target);
+	
 	return (req, res, errorHandler) => {
 
 		proxy.on('proxyReq', function (proxyReq, req, res, options) {
@@ -19,6 +21,7 @@ module.exports = (config) => {
 			// }
 			proxyReq.setHeader('x-powered-by', 'Hardbox Reverse Proxy');
 		});
+		console.debug('Attempting to proxy to:', config.target);
 		proxy.web(req, res, {
 			target: config.target
 		}, function (e) {
@@ -26,5 +29,5 @@ module.exports = (config) => {
 			res.end();
 			if(errorHandler) errorHandler(e);
 		});
-	}
+	};
 };

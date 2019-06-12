@@ -10,10 +10,10 @@ let proxyServer, ser2;
 
 describe('Test Proxy Injectable Error Handler', () => {
 
-	it("must call injectable error handler", done => {
+	it('must call injectable error handler', done => {
 
-		let proxyHandler = (req, res) => {
-			let proxy = require('../index')({
+		const proxyHandler = (req, res) => {
+			const proxy = require('../index')({
 				target: `http://localhost:${port2}`
 			});
 			proxy(req, res, (e) => {
@@ -36,5 +36,5 @@ describe('Test Proxy Injectable Error Handler', () => {
 
 	after(() => {
 		if (proxyServer) proxyServer.close();
-	})
+	});
 });

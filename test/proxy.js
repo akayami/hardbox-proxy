@@ -6,7 +6,7 @@ const port = 31313;
 const port2 = 21212;
 
 const proxyHandler = (req, res) => {
-	let proxy = require('../index')({
+	const proxy = require('../index')({
 		target: `http://localhost:${port2}`
 	});
 	proxy(req, res, (e) => {
@@ -38,7 +38,7 @@ describe('Proxy', () => {
 
 		beforeEach((done) => {
 			ser2 = require('http').createServer((req, res) => {
-				let e = req.url.split('/').pop();
+				const e = req.url.split('/').pop();
 				if((e.length > 0 && String((e * 1)) === e)) {
 					res.statusCode = e;
 				}
@@ -50,7 +50,7 @@ describe('Proxy', () => {
 				if (err) return done(err);
 
 				done();
-			})
+			});
 		});
 
 		afterEach((done) => {
@@ -60,8 +60,8 @@ describe('Proxy', () => {
 
 		it('Match', (done) => {
 			require('request')({url: `http://localhost:${port}`, headers: {
-					'requestHeader': 'requestHeaderValue'
-				}}, (err, res, body) => {
+				'requestHeader': 'requestHeaderValue'
+			}}, (err, res, body) => {
 				if (res.statusCode === 200 && body === 'ok') {
 					//console.log(res.headers);
 					done();
@@ -92,7 +92,7 @@ describe('Proxy', () => {
 		});
 
 		serv = require('http').createServer((req, res) => {
-			let e = req.url.split('/').pop();
+			const e = req.url.split('/').pop();
 			if((e.length > 0 && String((e * 1)) === e)) {
 				res.statusCode = e;
 			}
@@ -108,8 +108,8 @@ describe('Proxy', () => {
 		}).listen(port2, (err) => {
 			if (err) return done(err);
 			require('request')({url: `http://localhost:${port}`, headers: {
-					'requestHeader': 'requestHeaderValue'
-				}}, (err, res, body) => {
+				'requestHeader': 'requestHeaderValue'
+			}}, (err, res, body) => {
 				// if (res.statusCode === 200 && body === 'ok') {
 				// 	//console.log(res.headers);
 				// 	done();
@@ -123,8 +123,8 @@ describe('Proxy', () => {
 
 	it('Fails correctly when no backedn is available', done => {
 		require('request')({url: `http://localhost:${port}`, headers: {
-				'requestHeader': 'requestHeaderValue'
-			}}, (err, res, body) => {
+			'requestHeader': 'requestHeaderValue'
+		}}, (err, res, body) => {
 			if (res.statusCode === 503) {
 				//console.log(res.headers);
 				done();
