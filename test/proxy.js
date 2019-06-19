@@ -127,7 +127,7 @@ describe('Proxy', () => {
 	});
 
 
-	it('Fails correctly when no backedn is available', done => {
+	it('Fails correctly when no backend is available', done => {
 		require('request')({url: `http://localhost:${port}`, headers: {
 			'requestHeader': 'requestHeaderValue'
 		}}, (err, res, body) => {

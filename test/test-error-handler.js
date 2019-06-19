@@ -34,7 +34,7 @@ describe('Test Proxy Injectable Error Handler', () => {
 				done(err);
 			} else {
 				require('request')({url: `http://localhost:${port}`}, (err, res, body) => {
-
+					if(err) console.error(err);
 				});
 			}
 		});

@@ -1,4 +1,4 @@
-const hardbox = require('hardbox');
+const server = require('hardbox');
 const request = require('request');
 const {expect} = require('chai');
 const config = {};
@@ -70,22 +70,10 @@ let target;
 
 describe('Testing server', () => {
 	beforeEach(() => {
-		i = hardbox(config);
-		const app = require('express')();
-		app.get('/', (req, res) => {
-			res.send('Hello World!');
-			console.debug('Sending Response');
-		});
-		target = app.listen(
-			port,
-			(s) => {
-				console.log(`Example app listening on port ${port}!`);
-			}
-		);
+		i = server(config);
 	});
 	afterEach((done) => {
 		i.close();
-		target.close();
 		done();
 	});
 	
@@ -93,19 +81,10 @@ describe('Testing server', () => {
 		done();
 	});
 	
-	it('Needs to proxy', (done) => {
+	it('Needs to fail when no backend available', (done) => {
 		request('http://localhost:2199', (err, res, body) => {
 			if(err) return done(err);
-			expect(res.statusCode).equal(200);
-			expect(body).equal('Hello World!');
-			done();
-		});
-	});
-	
-	it('Needs to 404 on invalid path', (done) => {
-		request('http://localhost:2199/test', (err, res, body) => {
-			if(err) return done(err);
-			expect(res.statusCode).equal(404);
+			expect(res.statusCode).equal(503);
 			done();
 		});
 	});
