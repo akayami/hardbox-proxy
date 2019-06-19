@@ -3,6 +3,12 @@ const request = require('request');
 const {expect} = require('chai');
 const config = {};
 
+const { Console } = require('console');
+const level = require('@akayami/console-level');
+console = new Console({ stdout: process.stdout, stderr: process.stderr });
+// Make console output only warns and bellow
+console = level(console, 'info');
+
 config.morgan = 'tiny'; // tiny/combined etc.
 
 config.workers = 1;

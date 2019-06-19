@@ -1,5 +1,11 @@
 const { should, expect } = require('chai');
 
+const { Console } = require('console');
+const level = require('@akayami/console-level');
+console = new Console({ stdout: process.stdout, stderr: process.stderr });
+// Make console output only warns and bellow
+console = level(console, 'log');
+
 //console.log(expect);
 
 const port = 31313;

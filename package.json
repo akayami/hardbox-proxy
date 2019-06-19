@@ -16,6 +16,7 @@
   "author": "Tomasz Rakowski",
   "license": "ISC",
   "devDependencies": {
+    "@akayami/console-level": "^0.0.4",
     "chai": "^4.2.0",
     "coveralls": "^3.0.4",
     "eslint": "^5.16.0",
