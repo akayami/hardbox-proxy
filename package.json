@@ -1,6 +1,6 @@
 {
   "name": "hardbox-proxy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Proxy Module for hardbox",
   "main": "index.js",
   "scripts": {
