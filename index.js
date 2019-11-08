@@ -10,7 +10,8 @@ const defaultConf = {
 
 module.exports = (app, config) => {
 	
-	const proxyCfg = merge(defaultConf.proxy, config.proxy);
+	const proxyCfg = merge(defaultConf.proxy, config.proxy ? config.proxy : config);
+	//const proxyCfg = merge(defaultConf.proxy, config.proxy);
 	const extraHeaders = defaultConf.headers.concat(config.headers);
 	const httpProxy = require('http-proxy');
 	const proxy = httpProxy.createProxyServer(proxyCfg);
