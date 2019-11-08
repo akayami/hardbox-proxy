@@ -20,7 +20,9 @@ describe('Test Proxy Injectable Error Handler', () => {
 
 		const proxyHandler = (req, res) => {
 			const proxy = require('../index')(require('express')(),{
-				target: `http://localhost:${port2}`
+				proxy: {
+					target: `http://localhost:${port2}`
+				}
 			});
 			proxy(req, res, (e) => {
 				expect(e).to.be.an('Error');

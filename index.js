@@ -1,11 +1,21 @@
-module.exports = (app, config) => {
-
-	const httpProxy = require('http-proxy');
-	const proxy = httpProxy.createProxyServer({
+const merge = require('deepmerge');
+const defaultConf = {
+	proxy: {
 		xfwd: true
-	});
+	},
+	headers: [
+		['x-powered-by','Hardbox Reverse Proxy']
+	]
+};
+
+module.exports = (app, config) => {
 	
-	console.debug('Setting up forwarding to', config.target);
+	const proxyCfg = merge(defaultConf.proxy, config.proxy);
+	const extraHeaders = defaultConf.headers.concat(config.headers);
+	const httpProxy = require('http-proxy');
+	const proxy = httpProxy.createProxyServer(proxyCfg);
+	
+	console.debug('Setting up forwarding to', proxyCfg.target);
 	
 	return (req, res, errorHandler) => {
 
@@ -19,12 +29,12 @@ module.exports = (app, config) => {
 			// 		proxyReq.setHeader(res.proxyHeaders[x][0], res.proxyHeaders[x][1]);
 			// 	}
 			// }
-			proxyReq.setHeader('x-powered-by', 'Hardbox Reverse Proxy');
+			for(let i = 0; i < i.length; i++) {
+				proxyReq.setHeader(i[0], i[1]);
+			}
 		});
-		console.debug('Attempting to proxy to:', config.target);
-		proxy.web(req, res, {
-			target: config.target
-		}, function (e) {
+		console.debug('Attempting to proxy to:', proxyCfg.target);
+		proxy.web(req, res, proxyCfg, function (e) {
 			res.statusCode = 503;
 			res.end();
 			if(errorHandler) errorHandler(e);

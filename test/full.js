@@ -49,7 +49,9 @@ config.controller = {
 					{
 						name:  __dirname + '../../index',
 						config: {
-							target: 'http://localhost:' + port
+							proxy: {
+								target: 'http://localhost:' + port
+							}
 						}
 					}
 				]

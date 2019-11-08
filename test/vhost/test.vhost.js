@@ -14,7 +14,9 @@ module.exports = {
 		{
 			name: __dirname + '../../../index',
 			config: {
-				target: 'http://localhost:2100'
+				proxy: {
+					target: 'http://localhost:2100'
+				}
 			}
 		}
 	]
