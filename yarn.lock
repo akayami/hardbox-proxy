@@ -1228,10 +1228,10 @@ har-validator@~5.1.0:
     ajv "^6.5.5"
     har-schema "^2.0.0"
 
-hardbox@^0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/hardbox/-/hardbox-0.4.1.tgz#98a27fa64231eb8d076bb71de5bdf50e7171e157"
-  integrity sha512-xSzSJC3+xKngrsZp+YTQxa4Z/9bNhriZ8JqGLgRberphdTJ6DfN28aj72JCGrGAsj5HKqi99rZpPCBibXObglw==
+hardbox@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/hardbox/-/hardbox-0.5.0.tgz#8c1e1aa2889c1465b9a32ee6a20687496a764638"
+  integrity sha512-6ZDM35GrPj3JChNqgweakKPgZ/QgOKgPwsoj7T3DMf7cjoJPZLHycUmnje1yUuCcHR8DxSpObOC90rkJG7SRaQ==
   dependencies:
     async "^3.0.1"
     body-parser "^1.18.3"
