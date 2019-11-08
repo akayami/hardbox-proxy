@@ -12,7 +12,7 @@ const port = 31313;
 const port2 = 21212;
 
 const proxyHandler = (req, res) => {
-	const proxy = require('../index')({
+	const proxy = require('../index')(require('express')(),{
 		target: `http://localhost:${port2}`
 	});
 	proxy(req, res, (e) => {

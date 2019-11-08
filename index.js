@@ -1,4 +1,4 @@
-module.exports = (config) => {
+module.exports = (app, config) => {
 
 	const httpProxy = require('http-proxy');
 	const proxy = httpProxy.createProxyServer({
