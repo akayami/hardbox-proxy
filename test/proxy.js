@@ -12,13 +12,21 @@ const port = 31313;
 const port2 = 21212;
 
 const proxyHandler = (req, res) => {
-	const proxy = require('../index')(require('express')(),{
+	
+	const app = require('express')();
+	
+	const proxy = require('../index')(app,{
 		proxy: {
 			target: `http://localhost:${port2}`
 		}
 	});
-	proxy(req, res, (e) => {
-		//console.error(e);
+	app(req, res, (err) => {
+		if (err.getStatus) {
+			res.statusCode = err.getStatus();
+		} else {
+			res.statusCode = 500;
+		}
+		res.end();
 	});
 };
 

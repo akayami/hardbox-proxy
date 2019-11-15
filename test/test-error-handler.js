@@ -11,23 +11,22 @@ console = level(console, 'log');
 const port = 31313;
 const port2 = 21212;
 
-let proxyServer, ser2;
+let proxyServer, ser2, app;
 
 
 describe('Test Proxy Injectable Error Handler', () => {
 
 	it('must call injectable error handler', done => {
-
+		
+		app = require('express')();
+		
 		const proxyHandler = (req, res) => {
-			const proxy = require('../index')(require('express')(),{
+			const proxy = require('../index')(app,{
 				proxy: {
 					target: `http://localhost:${port2}`
 				}
 			});
-			proxy(req, res, (e) => {
-				expect(e).to.be.an('Error');
-				done();
-			});
+			app(req, res);
 		};
 
 
@@ -36,7 +35,8 @@ describe('Test Proxy Injectable Error Handler', () => {
 				done(err);
 			} else {
 				require('request')({url: `http://localhost:${port}`}, (err, res, body) => {
-					if(err) console.error(err);
+					expect(res.statusCode).to.be.equal(503);
+					done();
 				});
 			}
 		});

@@ -29,7 +29,7 @@
   "dependencies": {
     "deepmerge": "^4.2.2",
     "global": "^4.4.0",
-    "hardbox": "^0.5.0",
+    "hardbox": "^0.5.2",
     "http": "0.0.0",
     "http-proxy": "^1.17.0"
   }

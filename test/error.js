@@ -70,7 +70,7 @@ let i;
 let target;
 
 
-describe('Testing server', () => {
+describe('Testing server', (done) => {
 	beforeEach(() => {
 		i = server(config);
 	});
